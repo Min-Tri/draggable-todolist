@@ -13,9 +13,9 @@ const Todo = ({ onClick, onRemove, completed, content }) => {
     <li
         className={className}
         
-        style={{
+        // style={{
         // textDecoration: completed ? 'line-through' : 'none'
-        }}
+        // }}
     >
         <div className="view">
             <input 
