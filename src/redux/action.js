@@ -1,4 +1,4 @@
-import { ADD_TODO, COMPLETE, DELETE_ITEM, SET_FILTER ,SWAP_TODO} from "./actionType.js";
+import { ADD_TODO, COMPLETE, DELETE_TODO, SET_FILTER ,SWAP_TODO,EDIT_TODO,COMPLETE_ALL_TODOS,CLEAR_COMPLETED} from "./actionType.js";
 
 let todoid = 0;
 
@@ -19,7 +19,7 @@ export const toggleItem = (id, status) => ({
 });
 
 export const deleteItem = (id) => ({
-  type: DELETE_ITEM,
+  type: DELETE_TODO,
   payload: {
     id
   }
@@ -39,3 +39,19 @@ export const filter = (filter) => ({
     filter
   }
 });
+
+export const editTodo = (id, content) => ({ 
+  type: EDIT_TODO,
+  payload:{
+    id, 
+    content
+  }
+})
+
+export const completeAllTodos = () => ({ 
+  type: COMPLETE_ALL_TODOS 
+})
+
+export const clearCompleted = () => ({ 
+  type: CLEAR_COMPLETED 
+})

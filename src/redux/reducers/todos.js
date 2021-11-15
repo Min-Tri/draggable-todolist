@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { ADD_TODO, COMPLETE, DELETE_ITEM,SWAP_TODO} from "../actionType";
+import { ADD_TODO, COMPLETE, DELETE_TODO,SWAP_TODO,EDIT_TODO,COMPLETE_ALL_TODOS,CLEAR_COMPLETED} from "../actionType";
 
 
 const todos = (state = [], action) => {
@@ -9,8 +9,8 @@ const todos = (state = [], action) => {
       return [
         ...state,
         {
-          id,
-          content,
+          id: (state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1)||id,
+          content:content,
           completed: false
         }
       ]
@@ -23,7 +23,7 @@ const todos = (state = [], action) => {
           : todo
       )
     }
-    case DELETE_ITEM:{
+    case DELETE_TODO:{
       const {id}=action.payload
       return state.filter(todo => todo.id !== id)
     }
@@ -40,6 +40,24 @@ const todos = (state = [], action) => {
         }
       })
     }
+    case EDIT_TODO:{
+      const {id,content}=action.payload
+      return state.map(todo =>
+        (todo.id === id) 
+          ?{ ...todo, content: content } 
+          :todo
+      )
+    }      
+    case COMPLETE_ALL_TODOS:{
+      const areAllMarked = state.every(todo => todo.completed)
+      return state.map(todo => ({
+        ...todo,
+        completed: !areAllMarked
+      }))
+    }      
+    case CLEAR_COMPLETED:{
+      return state.filter(todo => todo.completed === false)
+    }      
     default:
       return state
   }

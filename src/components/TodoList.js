@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 import DraggableTodo from '../containers/DraggableTodo'
-// import { addTodo } from '../redux/action'
-// import Todo from './TodoItems'
+
 
 class TodoList extends Component {
   componentDidMount() {
@@ -12,7 +11,7 @@ class TodoList extends Component {
   }
 
   render() {
-    const { todos, toggleItem, deleteItem, dispatch } = this.props
+    const { todos, toggleItem, deleteItem, dispatch,actions } = this.props
     return (
       <section className="main">
 
@@ -23,6 +22,7 @@ class TodoList extends Component {
               todo={todo}
               toggleItem={() => toggleItem(todo.id)}
               deleteItem={() => deleteItem(todo.id)}
+              actions={actions}
               dispatch={dispatch}
             />
       

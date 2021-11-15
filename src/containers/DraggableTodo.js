@@ -61,12 +61,14 @@ function targetCollect(connect, monitor) {
     }
 }
 
-const DraggableTodo = ({isDragging, connectDragSource, isOver, connectDropTarget, todo, toggleItem, deleteItem, dispatch}) => connectDragSource(connectDropTarget(
+const DraggableTodo = ({isDragging, connectDragSource, isOver, connectDropTarget, todo, toggleItem, deleteItem, dispatch,actions}) => connectDragSource(connectDropTarget(
     <div style={{ opacity: isDragging ? 0.5 : 1 }}>
         <Todo
             {...todo}
             onClick={() => toggleItem(todo.id)}
             onRemove={() => deleteItem(todo.id)}
+            {...actions}
+            todo={todo}
         />
     </div>
 ))

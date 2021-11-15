@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
-import { toggleItem, deleteItem } from '../redux/action'
+import { bindActionCreators } from 'redux'
+import { toggleItem, deleteItem} from '../redux/action'
 import TodoList from '../components/TodoList'
 import { Filters } from '../redux/actionType'
+import * as TodoActions from '../redux/action'
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -23,7 +25,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   toggleItem: id => dispatch(toggleItem(id)),
   deleteItem: id => dispatch(deleteItem(id)),
-  dispatch: dispatch
+  actions: bindActionCreators(TodoActions, dispatch),
+  dispatch: dispatch,
 })
 
 export default connect(

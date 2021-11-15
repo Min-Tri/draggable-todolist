@@ -8,7 +8,7 @@ const AddTodo = ({ dispatch }) => {
   let input
 
   return (
-    <div className="header">
+    <header className="header">
         <h1>todos</h1>
         <div>
             <form onSubmit={e => {
@@ -40,7 +40,7 @@ const AddTodo = ({ dispatch }) => {
                 </div>
             </form>
         </div>
-    </div>
+    </header>
   )
 }
 
